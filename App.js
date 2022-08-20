@@ -1,18 +1,33 @@
 import React from "react";
-import {View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet,ScrollView, Dimensions } from 'react-native';
+
+const {width: SCREEN_WIDTH} = Dimensions.get("window")
 
 export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.city}>
       <Text style={styles.cityName}>Seoul</Text>
-    </View>
-      <View style={styles.weather}>
+      </View>
+      <ScrollView
+        pagingEnabled //스크롤이 쫀득하게 움직이게 함.
+        horizontal    //수평으로
+         //화면의 가로길이 가져옴
+        contentContainerStyle={styles.weather}> 
+        
         <View style={styles.day}>
           <Text style={styles.temp}>27</Text>
           <Text style={styles.description}>sunny</Text>
         </View>
-      </View>
+        <View style={styles.day}>
+          <Text style={styles.temp}>27</Text>
+          <Text style={styles.description}>sunny</Text>
+        </View>
+        <View style={styles.day}>
+          <Text style={styles.temp}>27</Text>
+          <Text style={styles.description}>sunny</Text>
+        </View>
+      </ScrollView>
     </View>
   
   );
@@ -24,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: "yellow",
   },
   city: {
-    flex: 1.2,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -32,14 +47,13 @@ const styles = StyleSheet.create({
       fontSize: 35,
   },
   weather: {
-    flex:3,
-
+    backgroundColor: "blue"
   },
   day:{
-    flex: 1,
+    width: SCREEN_WIDTH,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "teal",
+    
   },
   temp:{
     marginTop: 20,
