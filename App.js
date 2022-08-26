@@ -5,11 +5,13 @@ import * as Location from 'expo-location';
 
 const {width: SCREEN_WIDTH} = Dimensions.get("window")
 
+const API_KEY = "84384e4e24dcb7b58bb9d568197625b4";
+
 export default function App() {
   const [city, setCity] = useState("Loding...")
-  const [location, setLocation] = useState(null);
+  const [days, setDays] = useState([])
   const [ok, setOk] = useState(true);
-  const ask = async() => {
+  const getWeather = async() => {
     const {granted} = await Location.requestForegroundPermissionsAsync();
     if(!granted){
       setOk(false);
@@ -20,7 +22,7 @@ export default function App() {
   }
 
   useEffect(()=>{ 
-    ask();
+   getWeather();
   }, [])
 
   return (
