@@ -19,6 +19,8 @@ export default function App() {
     const {coords:{latitude,longitude}} = await Location.getCurrentPositionAsync({accuracy: 5})
     const location = await Location.reverseGeocodeAsync({latitude,longitude}, {useGoogleMaps: false})
     setCity(location[0].country)
+    const response = await fetch('https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}')
+    const json = await response.json();
   }
 
   useEffect(()=>{ 
